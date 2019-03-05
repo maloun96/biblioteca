@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Backend\Auth\Role\RoleController;
+
+use App\Http\Controllers\Backend\Auth\Terminal\TerminalController;
 use App\Http\Controllers\Backend\Auth\User\UserController;
+
 use App\Http\Controllers\Backend\Auth\User\UserAccessController;
 use App\Http\Controllers\Backend\Auth\User\UserSocialController;
 use App\Http\Controllers\Backend\Auth\User\UserStatusController;
@@ -35,6 +38,23 @@ Route::group([
         Route::get('user', [UserController::class, 'index'])->name('user.index');
         Route::get('user/create', [UserController::class, 'create'])->name('user.create');
         Route::post('user', [UserController::class, 'store'])->name('user.store');
+
+		/*
+		 * Terminals CRUD
+		 */
+		Route::get('terminal', [TerminalController::class, 'index'])->name('terminal.index');
+		Route::get('terminal/create', [TerminalController::class, 'create'])->name('terminal.create');
+		Route::post('terminal', [TerminalController::class, 'store'])->name('terminal.store');
+
+		/*
+		 * Specific Terminal
+		 */
+		Route::group(['prefix' => 'terminal/{terminal}'], function () {
+			Route::patch('/', [TerminalController::class, 'update'])->name('terminal.update');
+			Route::get('edit', [TerminalController::class, 'edit'])->name('terminal.edit');
+			Route::get('delete', [TerminalController::class, 'destroy'])->name('terminal.delete-permanently');
+		});
+
 
         /*
          * Specific User

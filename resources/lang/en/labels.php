@@ -113,6 +113,9 @@ return [
 
                 'view' => 'View User',
             ],
+			'terminal' => [
+				'management' => 'Terminals Management'
+			]
         ],
     ],
 

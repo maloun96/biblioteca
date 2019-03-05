@@ -55,6 +55,34 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
+                                    {{ html()->label(__('validation.attributes.frontend.phone'))->for('phone') }}
+
+                                    {{ html()->text('phone')
+                                        ->class('form-control')
+                                        ->placeholder(__('validation.attributes.frontend.phone'))
+                                        ->attribute('maxlength', 191)
+                                        ->required() }}
+                                </div><!--form-group-->
+                            </div><!--col-->
+                        </div><!--row-->
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{ html()->label(__('validation.attributes.frontend.cnp'))->for('cnp') }}
+
+                                    {{ html()->text('cnp')
+                                        ->class('form-control')
+                                        ->placeholder(__('validation.attributes.frontend.cnp'))
+                                        ->attribute('maxlength', 191)
+                                        ->required() }}
+                                </div><!--form-group-->
+                            </div><!--col-->
+                        </div><!--row-->
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
                                     {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
 
                                     {{ html()->password('password')
