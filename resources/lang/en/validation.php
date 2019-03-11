@@ -40,6 +40,7 @@ return [
     'dimensions'           => 'The :attribute has invalid image dimensions.',
     'distinct'             => 'The :attribute field has a duplicate value.',
     'email'                => 'The :attribute must be a valid email address.',
+    'cnpm'                 => 'The :attribute must be a valid .',
     'exists'               => 'The selected :attribute is invalid.',
     'file'                 => 'The :attribute must be a file.',
     'filled'               => 'The :attribute field must have a value.',
@@ -192,6 +193,7 @@ return [
         'frontend' => [
             'avatar'                    => 'Avatar Location',
             'email'                     => 'E-mail Address',
+            'cnp'                       => 'CNP',
             'first_name'                => 'First Name',
             'last_name'                 => 'Last Name',
             'name'                      => 'Full Name',
