@@ -38,6 +38,8 @@ class LoanController extends Controller
 	 * TerminalController constructor.
 	 *
 	 * @param LoanRepository $loanRepository
+	 * @param UserRepository $userRepository
+	 * @param BookRepository $bookRepository
 	 */
 	public function __construct(LoanRepository $loanRepository, UserRepository $userRepository, BookRepository $bookRepository)
 	{
@@ -53,7 +55,7 @@ class LoanController extends Controller
 	 */
 	public function index(\Request $request)
 	{
-		$loans = $this->loanRepository->getPaginated(25, 'id', 'asc');
+		$loans = $this->loanRepository->getPaginated(25, 'created_at', 'desc');
 		$isAdmin = $this->isAdmin();
 		return view('backend.auth.loan.index')->with(compact('loans', 'isAdmin'));
 	}
@@ -67,8 +69,8 @@ class LoanController extends Controller
 	 */
 	public function create(ManageUserRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository)
 	{
-		$books = $this->bookRepository->all();
-		$users = $this->userRepository->all();
+		$books = $this->bookRepository->orderBy('created_at', 'desc')->all();
+		$users = $this->userRepository->orderBy('created_at', 'desc')->all();
 		return view('backend.auth.loan.create', ['books' => $books, 'users' => $users]);
 	}
 
@@ -109,8 +111,8 @@ class LoanController extends Controller
 	 */
 	public function edit(ManageUserRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository, Loan $loan)
 	{
-		$books = $this->bookRepository->all();
-		$users = $this->userRepository->all();
+		$books = $this->bookRepository->orderBy('created_at', 'desc')->all();
+		$users = $this->userRepository->orderBy('created_at', 'desc')->all();
 		return view('backend.auth.loan.edit', ['books' => $books, 'users' => $users, 'loan' => $loan]);
 	}
 

@@ -35,7 +35,7 @@ class DashboardController extends Controller
     public function index()
     {
     	$loansBooksIds = [];
-		$loans = $this->loanRepository->where('status', 1, '=')->with('book')->get();
+		$loans = $this->loanRepository->where('status', 1, '=')->with('book')->orderBy('created_at', 'desc')->get();
 		foreach($loans as $loan) {
 			if(!array_key_exists($loan->book->id, $loansBooksIds)) {
 				$loansBooksIds[$loan->book->id] = 1;
@@ -52,7 +52,7 @@ class DashboardController extends Controller
 				$books[$key]->available = true;
 			}
 		}
-		$userLoans = $this->loanRepository->where('user_id', Auth::user()->id, '=')->get();
+		$userLoans = $this->loanRepository->where('user_id', Auth::user()->id, '=')->orderBy('created_at', 'desc')->get();
 
         return view('frontend.user.dashboard', ['books' => $books, 'userLoans' => $userLoans]);
     }
