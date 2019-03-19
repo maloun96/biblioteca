@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\Auth\Loan\LoanController;
 use App\Http\Controllers\Backend\Auth\Role\RoleController;
 
+use App\Http\Controllers\Backend\Auth\Book\BookController;
 use App\Http\Controllers\Backend\Auth\Terminal\TerminalController;
 use App\Http\Controllers\Backend\Auth\User\UserController;
 
@@ -53,6 +55,40 @@ Route::group([
 			Route::patch('/', [TerminalController::class, 'update'])->name('terminal.update');
 			Route::get('edit', [TerminalController::class, 'edit'])->name('terminal.edit');
 			Route::get('delete', [TerminalController::class, 'destroy'])->name('terminal.delete-permanently');
+		});
+
+		/*
+		 * Book CRUD
+		 */
+		Route::get('book', [BookController::class, 'index'])->name('book.index');
+		Route::get('book/create', [BookController::class, 'create'])->name('book.create');
+		Route::post('book', [BookController::class, 'store'])->name('book.store');
+
+		/*
+		 * Specific Book
+		 */
+		Route::group(['prefix' => 'book/{book}'], function () {
+			Route::patch('/', [BookController::class, 'update'])->name('book.update');
+			Route::get('edit', [BookController::class, 'edit'])->name('book.edit');
+			Route::get('delete', [BookController::class, 'destroy'])->name('book.delete-permanently');
+		});
+
+		/*
+		 * Loan CRUD
+		 */
+		Route::get('loan', [LoanController::class, 'index'])->name('loan.index');
+		Route::get('loan/create', [LoanController::class, 'create'])->name('loan.create');
+		Route::post('loan', [LoanController::class, 'store'])->name('loan.store');
+
+		/*
+		 * Specific Loan CRUD
+		 */
+		Route::group(['prefix' => 'loan/{loan}'], function () {
+			Route::patch('/', [LoanController::class, 'update'])->name('loan.update');
+			Route::get('edit', [LoanController::class, 'edit'])->name('loan.edit');
+			Route::get('approve', [LoanController::class, 'approve'])->name('loan.approve');
+			Route::get('back', [LoanController::class, 'back'])->name('loan.back');
+			Route::get('delete', [LoanController::class, 'destroy'])->name('loan.delete-permanently');
 		});
 
 
