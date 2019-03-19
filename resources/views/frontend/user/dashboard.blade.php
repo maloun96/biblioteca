@@ -67,6 +67,7 @@
                                     <th>User</th>
                                     <th>Book</th>
                                     <th>Status</th>
+                                    <th>Created at</th>
                                     <th>Updated at</th>
                                 </tr>
                                 </thead>
@@ -86,6 +87,7 @@
                                                 <span class="badge badge-pill badge-dark">Restored</span>
                                             @endif
                                         </td>
+                                        <td>{{ $loan->created_at }}</td>
                                         <td>{{ $loan->updated_at }}</td>
                                     </tr>
                                 @endforeach
