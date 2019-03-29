@@ -7,17 +7,10 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
-            @if(config('locale.status') && count(config('locale.languages')) > 1)
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownLanguageLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">@lang('menus.language-picker.language') ({{ strtoupper(app()->getLocale()) }})</a>
-
-                    @include('includes.partials.lang')
-                </li>
-            @endif
 
             @auth
                 <li class="nav-item"><a href="{{route('frontend.user.dashboard')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}">@lang('navs.frontend.dashboard')</a></li>
+                <li class="nav-item"><a href="{{route('admin.dashboard')}}" class="nav-link ">Administration</a></li>
             @endauth
 
             @guest
@@ -41,8 +34,6 @@
                     </div>
                 </li>
             @endguest
-
-            <li class="nav-item"><a href="{{route('frontend.contact')}}" class="nav-link {{ active_class(Active::checkRoute('frontend.contact')) }}">@lang('navs.frontend.contact')</a></li>
         </ul>
     </div>
 </nav>
