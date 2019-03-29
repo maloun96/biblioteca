@@ -24,22 +24,6 @@
         <div class="row mt-4 mb-4">
             <div class="col">
                 <div class="form-group row">
-                    {{ html()->label('Name')->class('col-md-2 form-control-label')->for('name') }}
-
-                    <div class="col-md-10">
-                        {{ html()->text('name')
-                            ->class('form-control')
-                            ->placeholder('Name')
-                            ->attribute('maxlength', 191)
-                            ->required()
-                            ->autofocus() }}
-                    </div><!--col-->
-                </div><!--form-group-->
-            </div><!--col-->
-        </div><!--row-->
-        <div class="row mt-4 mb-4">
-            <div class="col">
-                <div class="form-group row">
                     {{ html()->label('User')->class('col-md-2 form-control-label')->for('user_id') }}
 
                     <div class="col-md-10">
@@ -62,6 +46,20 @@
                             @foreach($books as $book)
                                 <option value="{{ $book->id }}" {{ $loan->book->id === $book->id ? 'selected="true"' : '' }}>{{ $book->name }}</option>
                             @endforeach
+                        </select>
+                    </div><!--col-->
+                </div><!--form-group-->
+            </div><!--col-->
+        </div><!--row-->
+        <div class="row mt-4 mb-4">
+            <div class="col">
+                <div class="form-group row">
+                    {{ html()->label('Status')->class('col-md-2 form-control-label')->for('status') }}
+                    <div class="col-md-10">
+                        <select class="form-control" name="status">
+                            <option value="0" {{ $loan->status == 0 ? 'selected="true"' : '' }}>Pending</option>
+                            <option value="1" {{ $loan->status == 1 ? 'selected="true"' : '' }}>Approved</option>
+                            <option value="2" {{ $loan->status == 2 ? 'selected="true"' : '' }}>Restored</option>
                         </select>
                     </div><!--col-->
                 </div><!--form-group-->

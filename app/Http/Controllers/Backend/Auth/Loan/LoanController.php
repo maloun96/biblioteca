@@ -13,6 +13,7 @@ use App\Repositories\Backend\Auth\PermissionRepository;
 use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
 use App\Repositories\Backend\Auth\UserRepository;
 use Auth;
+use Illuminate\Http\Request;
 
 /**
  * Class LoanController.
@@ -122,11 +123,12 @@ class LoanController extends Controller
 	 * @return mixed
 	 * @throws \Throwable
 	 */
-	public function update(StoreTerminalRequest $request, Loan $loan)
+	public function update(Request $request, Loan $loan)
 	{
 		$this->loanRepository->update($loan, $request->only(
 			'user_id',
-			'book_id'
+			'book_id',
+			'status'
 		));
 
 		return redirect()->route('admin.auth.loan.index')->withFlashSuccess('Book was successfully updated.');

@@ -67,6 +67,7 @@ class LoanRepository extends BaseRepository
 			if ($loan->update([
 				'user_id' => $data['user_id'],
 				'book_id' => $data['book_id'],
+				'status' => $data['status'],
 			])) {
 				return $loan;
 			}
