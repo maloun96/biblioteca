@@ -31,7 +31,7 @@ class LoanRepository extends BaseRepository
 		return DB::transaction(function () use ($data) {
 			$loan = parent::create([
 				'user_id' => $data['user_id'],
-				'book_id' => $data['book_id'],
+				'copy_id' => $data['copy_id'],
 				'status' => $data['status'],
 			]);
 
@@ -51,6 +51,7 @@ class LoanRepository extends BaseRepository
 		return $this->model
 			->orderBy($orderBy, $sort)
 			->with('user')
+			->with('copy')
 			->paginate($paged);
 	}
 
@@ -66,7 +67,7 @@ class LoanRepository extends BaseRepository
 		return DB::transaction(function () use ($loan, $data) {
 			if ($loan->update([
 				'user_id' => $data['user_id'],
-				'book_id' => $data['book_id'],
+				'copy_id' => $data['copy_id'],
 				'status' => $data['status'],
 			])) {
 				return $loan;
@@ -93,6 +94,6 @@ class LoanRepository extends BaseRepository
 	}
 
     public function deleteByBookId($bookId) {
-        $this->model->where('book_id', '=', $bookId)->forceDelete();
+        $this->model->where('copy_id', '=', $bookId)->forceDelete();
     }
 }

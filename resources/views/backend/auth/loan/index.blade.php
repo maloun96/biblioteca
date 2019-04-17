@@ -38,7 +38,7 @@
                         @foreach($loans as $loan)
                             <tr>
                                 <td>{{ $loan->user->full_name }}</td>
-                                <td>{{ $loan->book->name }}</td>
+                                <td>{{ $loan->copy->book->name }}</td>
                                 <td>
                                     @if($loan->status === 0)
                                         <span class="badge badge-pill badge-primary">Pending</span>

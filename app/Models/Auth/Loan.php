@@ -17,14 +17,14 @@ class Loan extends Authenticatable
 	protected $fillable = [
 		'user_id',
 		'status',
-		'book_id',
+		'copy_id',
 	];
 
 	public function user() {
 		return $this->belongsTo(User::class);
 	}
 
-	public function book() {
-		return $this->belongsTo(Book::class);
+	public function copy() {
+		return $this->belongsTo(Copy::class);
 	}
 }

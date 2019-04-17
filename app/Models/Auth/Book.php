@@ -29,7 +29,7 @@ class Book extends Authenticatable
 
     public function copies()
     {
-    return $this->hasMany(Copy::class);
+        return $this->hasMany(Copy::class);
     }
 
 }

@@ -16,10 +16,10 @@ class CreateLoansTable extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('user_id')->unsigned();
-			$table->integer('book_id')->unsigned();
-			$table->integer('status')->comment('0: Pending, 1: Approved, 2: Restored');
+			$table->integer('copy_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('copy_id')->references('id')->on('copies');
+			$table->integer('status')->comment('0: Pending, 1: Approved, 2: Restored');
             $table->timestamps();
         });
     }

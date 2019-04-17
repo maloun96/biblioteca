@@ -19,6 +19,7 @@
                                 <thead>
                                 <tr>
                                     <th>Book</th>
+                                    <th>Code</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -26,7 +27,8 @@
                                 <tbody>
                                     @foreach($books as $book)
                                         <tr>
-                                            <td>{{$book->name}}</td>
+                                            <td>{{$book->book->name}}</td>
+                                            <td>{{$book->cod}}</td>
                                             <td>
                                                 @if($book->available)
                                                     <span class="badge badge-pill badge-success">Available</span>
@@ -36,7 +38,7 @@
                                             </td>
                                             <td>
                                                 @if($book->available)
-                                                    <a href="{{ route('frontend.user.dashboard.loan', $book) }}" class="btn btn-info"><i class="fas fa-cart-plus" data-toggle="tooltip" data-placement="top" title="Get Book"></i></a>
+                                                    <a href="{{ route('frontend.user.dashboard.loan', $book->id) }}" class="btn btn-info"><i class="fas fa-cart-plus" data-toggle="tooltip" data-placement="top" title="Get Book"></i></a>
                                                 @else
                                                     <span class="badge badge-pill badge-danger">Not available</span>
                                                 @endif
@@ -75,7 +77,7 @@
                                 @foreach($userLoans as $loan)
                                     <tr>
                                         <td>{{ $loan->user->full_name }}</td>
-                                        <td>{{ $loan->book->name }}</td>
+                                        <td>{{ $loan->copy->book->name }}</td>
                                         <td>
                                             @if($loan->status === 0)
                                                 <span class="badge badge-pill badge-primary">Pending</span>
