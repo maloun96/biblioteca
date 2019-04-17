@@ -25,7 +25,11 @@ class Book extends Authenticatable
 	 */
 	protected $fillable = [
 		'name',
-		'copies',
 	];
+
+    public function copies()
+    {
+    return $this->hasMany(Copy::class);
+    }
 
 }

@@ -33,7 +33,6 @@ class BookRepository extends BaseRepository
 		return DB::transaction(function () use ($data) {
 			$book = parent::create([
 				'name' => $data['name'],
-				'copies' => $data['copies'],
 			]);
 
 			return $book;
@@ -50,6 +49,7 @@ class BookRepository extends BaseRepository
 	public function getPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
 	{
 		return $this->model
+            ->with('copies')
 			->orderBy($orderBy, $sort)
 			->paginate($paged);
 	}
@@ -66,7 +66,6 @@ class BookRepository extends BaseRepository
 		return DB::transaction(function () use ($book, $data) {
 			if ($book->update([
 				'name' => $data['name'],
-				'copies' => $data['copies'],
 			])) {
 				return $book;
 			}

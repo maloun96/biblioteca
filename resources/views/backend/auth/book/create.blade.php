@@ -37,22 +37,28 @@
                         </div><!--form-group-->
                     </div><!--col-->
                 </div><!--row-->
-                <div class="row mt-4 mb-4">
-                    <div class="col">
-                        <div class="form-group row">
-                            {{ html()->label('Copies')->class('col-md-2 form-control-label')->for('copies') }}
+                <div class="copies">
+                    <div class="row mt-4 mb-4 copy" id="first-copy">
+                        <div class="col">
+                            <div class="form-group row">
+                                {{ html()->label('Cod unic')->class('col-md-2 form-control-label')->for('cod_unic[]') }}
+                                <div class="col-md-9">
+                                    {{ html()->text('cod_unic[]')
+                                        ->class('form-control')
+                                        ->placeholder('Cod unic')
+                                        ->attribute('maxlength', 191)
+                                        ->required()
+                                        ->autofocus() }}
+                                </div><!--col-->
+                                <div class="col-md-1 remove-cod-unic" style="display: none">
+                                    <button class="btn btn-danger remove-copy"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Remove"></i></button>
+                                </div>
+                            </div><!--form-group-->
+                        </div><!--col-->
+                    </div><!--row-->
+                </div>
 
-                            <div class="col-md-10">
-                                {{ html()->text('copies')
-                                    ->class('form-control')
-                                    ->placeholder('Copies')
-                                    ->attribute('maxlength', 191)
-                                    ->required()
-                                    ->autofocus() }}
-                            </div><!--col-->
-                        </div><!--form-group-->
-                    </div><!--col-->
-                </div><!--row-->
+                <button id="add-new-copy" class="btn btn-success">Add new copy</button>
             </div><!--card-body-->
 
             <div class="card-footer clearfix">
@@ -69,3 +75,24 @@
         </div><!--card-->
     {{ html()->form()->close() }}
 @endsection
+@push('after-scripts')
+    <script>
+        $(document).ready(function () {
+            console.log('Ready');
+
+            $("#add-new-copy").on('click', function (e) {
+                e.preventDefault();
+
+                const c = $('#first-copy').clone();
+                c.find('.remove-cod-unic').show();
+                c.find('input').val('');
+                c.appendTo( ".copies" );
+            });
+
+            $('.copies').on('click', '.remove-copy',function (e) {
+                e.preventDefault();
+                $(this).closest('.copy').remove();
+            })
+        })
+    </script>
+@endpush

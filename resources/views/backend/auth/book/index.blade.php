@@ -36,7 +36,7 @@
                         @foreach($books as $book)
                             <tr>
                                 <td>{{ $book->name }}</td>
-                                <td>{{ $book->copies }}</td>
+                                <td>{{ count($book->copies) }}</td>
                                 <td>
                                     <a href="{{ route('admin.auth.book.delete-permanently', $book) }} " name="confirm_item" class="btn btn-danger"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="'.__('buttons.backend.access.users.delete_permanently').'"></i></a>
                                     <a href="{{ route('admin.auth.book.edit', $book) }}" data-toggle="tooltip" data-placement="top" title="" class="btn btn-primary"><i class="fas fa-edit"></i></a>

@@ -91,4 +91,8 @@ class LoanRepository extends BaseRepository
 			}
 		});
 	}
+
+    public function deleteByBookId($bookId) {
+        $this->model->where('book_id', '=', $bookId)->forceDelete();
+    }
 }
